@@ -1,0 +1,36 @@
+{
+    "name": "seen-gen-js",
+    "version": "0.1.2",
+    "type": "module",
+    "description": "seen javascript generator",
+    "files": [
+        "./"
+    ],
+    "keywords": [
+        "seen",
+        "programming language",
+        "compiler",
+        "س",
+        "لغة برمجة",
+        "مترجم"
+    ],
+    "main": "src/javascript.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/abukhadra/seen-gen-js.git"
+    },
+    "scripts": {
+        "preinstall" : "npm run clean",
+        "postinstall": "vite build",
+        "prepare" : "npm run minify",
+        "minify": "esbuild gen-js.js --minify --outfile=gen-js.js --allow-overwrite",
+        "clean": "rm -rf ./gen-js.js && rm -rf ./node_modules"
+    },
+    "author": "Mustafa Abukhadra",
+    "license": "MIT",
+    "homepage": "https://seenlang.org",
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^5.1.4",
+        "esbuild": "0.24.0"
+    }
+}
