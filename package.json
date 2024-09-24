@@ -27,8 +27,8 @@
         "clean": "rm -rf ./gen-js.js && rm -rf ./node_modules"
     },
     "dependencies": {
-        "seen-compiler" : "https://github.com/abukhadra/seen-compiler",
-        "seen-gen-html" : "https://github.com/abukhadra/seen-gen-html"
+        "seen-compiler" : "github:abukhadra/seen-compiler",
+        "seen-gen-html" : "github:abukhadra/seen-gen-html"
       },    
     "author": "Mustafa Abukhadra",
     "license": "MIT",
