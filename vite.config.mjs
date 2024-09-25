@@ -23,7 +23,6 @@ export default defineConfig({
             external: [
                 "/^seen-gen-html:.*/",
                 "/^seen-compiler:.*/",
-                "seen-gen-html/gen-html.js",
             ]
         },
       },    

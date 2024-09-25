@@ -6,13 +6,13 @@
 import {
     write_ar_html, 
     write_html
-} from '../node_modules/seen-gen-html/gen-html.js'
+} from 'seen-gen-html/gen-html.js'
 
 import {
     HELPERS, 
     // symtab_funcs, 
     symtab_structs
-} from '../node_modules/seen-compiler/scompiler.js'
+} from 'seen-compiler/scompiler.js'
 
 import {
     pprint,
@@ -21,7 +21,7 @@ import {
     to_str,
     repeat,
     panic,    
-} from '../node_modules/seen-compiler/src/util.js'
+} from 'seen-compiler/scompiler.js'
 
 const AR_ID = {
     "بدء": "main",
