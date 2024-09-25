@@ -22,7 +22,8 @@ export default defineConfig({
         rollupOptions: {
             external: [
                 "/^seen-gen-html:.*/",
-                "/^seen-compiler:.*/"
+                "/^seen-compiler:.*/",
+                "seen-gen-html/gen-html.js",
             ]
         },
       },    
