@@ -20,7 +20,10 @@ export default defineConfig({
             fileName: () => 'gen-js.js',
         },          
         rollupOptions: {
-            preserveEntrySignatures : 'allow-extension'
+            external: [
+                "seen-gen-html",
+                "seen-compiler"
+            ]
         },
       },    
 	plugins: [
