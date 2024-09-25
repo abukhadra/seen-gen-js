@@ -22,7 +22,6 @@
     "scripts": {
         "build" : "npm i && vite build",
         "postbuild" : "npm run minify",        
-        "preinstall" : "npm run clean",
         "minify": "esbuild gen-js.js --minify --outfile=gen-js.js --allow-overwrite",
         "clean": "rm -rf ./gen-js.js && rm -rf ./node_modules"
     },
