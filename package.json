@@ -27,6 +27,10 @@
         "clean": "npm run clean-out && rm -rf ./node_modules",
         "clean-out" : "rm -rf ./gen-js.js"
     },  
+    "dependencies": {
+        "seen-gen-html" : "github:abukhadra/seen-gen-html",
+        "seen-compiler" : "github:abukhadra/seen-compiler"
+    },         
     "author": "Mustafa Abukhadra",
     "license": "MIT",
     "homepage": "https://seenlang.org",
