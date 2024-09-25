@@ -1,6 +1,6 @@
 {
     "name": "seen-gen-js",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "type": "module",
     "description": "seen javascript generator",
     "files": [
@@ -23,8 +23,8 @@
         "release" : "vite build",
         "postrelease" : "npm run minify",        
         "preinstall" : "npm run clean-out",
-        "minify": "esbuild gen-js.js --minify --outfile=gen-js.js --allow-overwrite",
-        "clean": "npm run clean-out && rm -rf ./node_modules",
+        "minify": "esbuild gen-js.js --minify --outfile=gen-js.js --allow-overwrite ",
+        "clean": "npm run clean-out && rm -rf ./node_modules  && rm -rf ./package-lock.json",
         "clean-out" : "rm -rf ./gen-js.js"
     },  
     "dependencies": {
