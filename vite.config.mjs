@@ -10,15 +10,18 @@ export default defineConfig({
         outDir: ".",
         emptyOutDir: false,
         assetsInlineLimit: Number.MAX_SAFE_INTEGER,
+        
         cssMinify: true, 
 		    minify: true,      
         lib: {
-            entry: resolve(__dirname, 'src/javascript.js'),
+            entry: resolve(__dirname, 'src/main.js'),
             formats: ['es'],
             name: 'SeenGenJS',
             fileName: () => 'gen-js.js',
         },          
-        rollupOptions: {},
+        rollupOptions: {
+            preserveEntrySignatures : 'allow-extension'
+        },
       },    
 	plugins: [
     vue(), 

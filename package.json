@@ -14,7 +14,7 @@
         "لغة برمجة",
         "مترجم"
     ],
-    "main": "src/javascript.js",
+    "main": "src/main.js",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/abukhadra/seen-gen-js.git"

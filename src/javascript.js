@@ -3,10 +3,16 @@
 // import HELPERS from '../../seen-compiler/src/helper.js'
 // import {funcs, structs} from '../../seen-compiler/src/symtab.js'
 
-import write_ar_html from 'seen-gen-html/src/ar_html.js'
-import write_html from 'seen-gen-html/src/en_html.js'
-import HELPERS from 'seen-compiler/src/helper.js'
-import {funcs, structs} from 'seen-compiler/src/symtab.js'
+import {
+    write_ar_html, 
+    write_html
+} from 'seen-gen-html/gen-html.js'
+
+import {
+    HELPERS, 
+    // symtab_funcs, 
+    symtab_structs
+} from 'seen-compiler/scompiler.js'
 
 import {
     pprint,
@@ -530,7 +536,7 @@ export default class JSGen {
             this.append(`(() => \`${page}\`)()`)
             return
         } 
-        else if(structs.includes(expr.v[0].v.v[1])) {  this.append('new ') }
+        else if(symtab_structs.includes(expr.v[0].v.v[1])) {  this.append('new ') }
         this.write_expr(expr.v[0])
         
         this.append('(')

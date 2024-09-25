@@ -1,0 +1,1 @@
+export { default as JSGen } from './javascript.js'
