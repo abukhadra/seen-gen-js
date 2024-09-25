@@ -1,0 +1,9 @@
+[submodule "seen-gen-html"]
+	path = seen-gen-html
+	url = https://github.com/abukhadra/seen-gen-html
+[submodule "lib/seen-gen-html"]
+	path = lib/seen-gen-html
+	url = https://github.com/abukhadra/seen-gen-html
+[submodule "lib/seen-compiler"]
+	path = lib/seen-compiler
+	url = https://github.com/abukhadra/seen-compiler
