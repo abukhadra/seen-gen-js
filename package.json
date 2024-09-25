@@ -26,11 +26,7 @@
         "minify": "esbuild gen-js.js --minify --outfile=gen-js.js --allow-overwrite",
         "clean": "npm run clean-out && rm -rf ./node_modules",
         "clean-out" : "rm -rf ./gen-js.js"
-    },
-    "dependencies": {
-        "seen-compiler" : "github:abukhadra/seen-compiler",
-        "seen-gen-html" : "github:abukhadra/seen-gen-html"
-      },    
+    },  
     "author": "Mustafa Abukhadra",
     "license": "MIT",
     "homepage": "https://seenlang.org",

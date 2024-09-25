@@ -1,18 +1,13 @@
-// import write_ar_html from '../../seen-gen-html/src/ar_html.js'
-// import write_html from '../../seen-gen-html/src/en_html.js'
-// import HELPERS from '../../seen-compiler/src/helper.js'
-// import {funcs, structs} from '../../seen-compiler/src/symtab.js'
-
 import {
     write_ar_html, 
     write_html
-} from 'seen-gen-html/gen-html.js'
+} from '../lib/seen-gen-html/gen-html.js'
 
 import {
     HELPERS, 
     // symtab_funcs, 
     symtab_structs
-} from 'seen-compiler/scompiler.js'
+} from '../lib/seen-compiler/scompiler.js'
 
 import {
     pprint,
@@ -21,7 +16,7 @@ import {
     to_str,
     repeat,
     panic,    
-} from 'seen-compiler/scompiler.js'
+} from '../lib/seen-compiler/scompiler.js'
 
 const AR_ID = {
     "بدء": "main",
