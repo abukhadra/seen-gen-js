@@ -7,7 +7,7 @@ import { viteSingleFile } from "vite-plugin-singlefile"
 export default defineConfig({
     build: {
         target: "ES2022",      
-        outDir: ".",
+        outDir: "./dist",
         emptyOutDir: false,
         assetsInlineLimit: Number.MAX_SAFE_INTEGER,
         
@@ -17,14 +17,9 @@ export default defineConfig({
             entry: resolve(__dirname, 'src/main.js'),
             formats: ['es'],
             name: 'SeenGenJS',
-            fileName: () => 'gen-js.js',
+            fileName: () => 'sgen-js.js',
         },          
-        rollupOptions: {
-            external: [
-                "/^seen-gen-html:.*/",
-                "/^seen-compiler:.*/",
-            ]
-        },
+        rollupOptions: {},
       },    
 	plugins: [
     vue(), 
