@@ -5,8 +5,7 @@ import {
 
 import {
     HELPERS, 
-    // symtab_funcs, 
-    symtab_structs
+    get_symtab_structs
 } from 'seen-compiler/src/main.js'
 
 import {
@@ -59,6 +58,7 @@ export default class JSGen {
     }
 
     run() {
+        console.log('test')
         this.strict_mode()
         let main
         let i = 0
@@ -531,7 +531,7 @@ export default class JSGen {
             this.append(`(() => \`${page}\`)()`)
             return
         } 
-        else if(symtab_structs.includes(expr.v[0].v.v[1])) {  this.append('new ') }
+        else if(get_symtab_structs.includes(expr.v[0].v.v[1])) {  this.append('new ') }
         this.write_expr(expr.v[0])
         
         this.append('(')
