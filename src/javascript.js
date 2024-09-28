@@ -5,7 +5,7 @@ import {
 
 import {
     HELPERS, 
-    get_symtab_structs
+    symtab_has_struct
 } from 'seen-compiler/src/main.js'
 
 import {
@@ -531,7 +531,7 @@ export default class JSGen {
             this.append(`(() => \`${page}\`)()`)
             return
         } 
-        else if(get_symtab_structs().includes(expr.v[0].v.v[1])) {  this.append('new ') }
+        else if(symtab_has_struct(expr.v[0].v.v[1])) {  this.append('new ') }
         this.write_expr(expr.v[0])
         
         this.append('(')
