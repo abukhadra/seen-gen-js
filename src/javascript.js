@@ -58,7 +58,6 @@ export default class JSGen {
     }
 
     run() {
-        console.log('test')
         this.strict_mode()
         let main
         let i = 0
