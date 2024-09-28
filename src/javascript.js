@@ -531,7 +531,7 @@ export default class JSGen {
             this.append(`(() => \`${page}\`)()`)
             return
         } 
-        else if(get_symtab_structs.includes(expr.v[0].v.v[1])) {  this.append('new ') }
+        else if(get_symtab_structs().includes(expr.v[0].v.v[1])) {  this.append('new ') }
         this.write_expr(expr.v[0])
         
         this.append('(')
