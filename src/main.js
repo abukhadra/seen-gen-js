@@ -29,19 +29,6 @@ class JSGen {
     html_gen 
     main_args
     opts
-    
-    // constructor() { return this }
-    // constructor(current, indent_level, stack, astructs, ast, symtab, html_gen, opts) {
-    //     this.current = current
-    //     this.indent_level = indent_level
-    //     this.stack = stack
-    //     this.astructs = astructs
-    //     this.ast = ast
-    //     this.symtab = symtab
-    //     this.html_gen = html_gen
-    //     this.opts = opts
-    //     return this
-    // }    
 
     init(ast, symtab, html_gen, main_args, opts) {
         this.current = ""
@@ -53,7 +40,6 @@ class JSGen {
         this.html_gen = html_gen
         this.main_args = main_args
         this.opts = opts  
-        // console.log(JSON.stringify(this.html_gen))     
     }
 
     run() {
