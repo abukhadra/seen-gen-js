@@ -23,14 +23,11 @@
         "prerelease": "npm i",
         "release": "vite build",
         "postrelease": "npm run minify && node ./lib/release/banner.js",
-        "minify": "esbuild ./dist/sgen-js.js --minify --outfile=./dist/sgen-js.js --allow-overwrite ",
-        "clean": "npm run clean-out && rm -rf ./node_modules  && rm -rf ./package-lock.json",
-        "clean-out" : "rm -rf ./dist"
-    },  
-    "dependencies": {
-        "seen-gen-html" : "github:abukhadra/seen-gen-html",
-        "seen-compiler" : "github:abukhadra/seen-compiler"
-    },         
+        "preinstall": "npm run clean-out",
+        "minify": "esbuild ./dist/scomp.js --minify --outfile=./dist/scomp.js --allow-overwrite",
+        "clean": "npm run clean-out && rm -rf ./node_modules && rm -rf ./package-lock.json",
+        "clean-out": "rm -rf ./dist"
+    },
     "author": "Mustafa Abukhadra",
     "license": "MIT",
     "homepage": "https://seenlang.org",
