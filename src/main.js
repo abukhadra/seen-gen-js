@@ -519,12 +519,12 @@ class JSGen {
     write_call(expr) {
         this.to_en_id(expr.v[0].v)
         if(expr.v[0].v.v[1] === 'html') { 
-            const page = html_gen.en.write_html(expr, '', JSGen()) 
+            const page = this.html_gen.en.write_html(expr, '', JSGen()) 
             this.append(` (() => \`${page}\`)() `)
             return
         }    // FIXME: workaround to generate html that should be removed when semantic analysis is ready
         else if (expr.v[0].v.v[1] === 'صفحة_الشبكة') { 
-            const page = html_gen.ar.write_ar_html(expr, '', JSGen())
+            const page = this.html_gen.ar.write_ar_html(expr, '', JSGen())
             this.append(`(() => \`${page}\`)()`)
             return
         } 
