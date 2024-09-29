@@ -30,7 +30,7 @@ class JSGen {
     main_args
     opts
     
-
+    constructor() { return this}
     constructor(current, indent_level, stack, astructs, ast, symtab, html_gen, opts) {
         this.current = current
         this.indent_level = indent_level
