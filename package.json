@@ -24,7 +24,7 @@
         "release": "vite build",
         "postrelease": "npm run minify && node ./lib/release/banner.js",
         "preinstall": "npm run clean-out",
-        "minify": "esbuild ./dist/scomp.js --minify --outfile=./dist/scomp.js --allow-overwrite",
+        "minify": "esbuild ./dist/sgen-js.js --minify --outfile=./dist/sgen-js.js --allow-overwrite",
         "clean": "npm run clean-out && rm -rf ./node_modules && rm -rf ./package-lock.json",
         "clean-out": "rm -rf ./dist"
     },
