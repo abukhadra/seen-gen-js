@@ -52,7 +52,8 @@ class JSGen {
         this.symtab= symtab
         this.html_gen = html_gen
         this.main_args = main_args
-        this.opts = opts       
+        this.opts = opts  
+        console.log(JSON.stringify(this.html_gen))     
     }
 
     run() {
