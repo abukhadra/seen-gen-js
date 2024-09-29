@@ -53,6 +53,7 @@ class JSGen {
         this.html_gen = html_gen
         this.main_args = main_args
         this.opts = opts  
+        console.log(JSON.stringify(this.html_gen))     
     }
 
     run() {
