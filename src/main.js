@@ -29,8 +29,9 @@ class JSGen {
     html_gen 
     main_args
     opts
+    runtime
 
-    init(ast, symtab, html_gen, main_args, opts) {
+    init(ast, symtab, html_gen, main_args, opts) {  // FIXME: remove html_gen , init will only init js , need to refactor sedit, scompile ...etc
         this.current = ""
         this.indent_level = 0
         this.stack = []
@@ -41,6 +42,16 @@ class JSGen {
         this.main_args = main_args
         this.opts = opts  
     }
+
+    init_with_HTML(html_gen, ast, symtab, main_args, opts) {
+        this.init(ast, symtab, html_gen, main_args, opts) // FIXME: remove html_gen when init() is refactored
+        this.html_gen = html_gen
+    }
+
+    init_with_runtime(runtime, ast, symtab, main_args, opts) { // FIXME: remove null when init() is refactored to remove html_gen
+        this.init(ast, symtab, null, main_args, opts)
+        this.runtime = runtime
+    }   
 
     run() {
         this.strict_mode()
@@ -80,6 +91,7 @@ class JSGen {
 
     pop() { this.current = this.stack.pop() + this.current }
     pop_prepend() { this.current = this.current + this.stack.pop() }
+    prepend(code) { this.current = code + this.current }
     append(code) { this.current += code }
 
     appendi(code) {
@@ -175,6 +187,7 @@ class JSGen {
         this.push()
         if(_fn.t === "fn") { this.appendi("static ") } 
         this.to_en_id(_fn.name)
+        if(_fn.is_async) { this.append("async ") } 
         this.append("function " + _fn.name.v[1])
         if(main_args) {this.append('()') } else { this.write_params(_fn.params) }
         
@@ -503,7 +516,18 @@ class JSGen {
         }
     }
 
+    write_runtime_fn() {
+
+    }
+
     write_call(expr) {
+        const runtime_impl = this.runtime.get_fn(expr)
+        if(runtime_impl) {  
+            if(runtime_impl._import) { this.prepend(runtime_impl._import)}
+            this.append(runtime_impl.code)
+            return 
+        }
+
         this.to_en_id(expr.v[0].v)
         if(expr.v[0].v.v[1] === 'html') { 
             const page = this.html_gen.en.write_html(expr, '') 
