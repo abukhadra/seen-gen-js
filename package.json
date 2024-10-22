@@ -35,6 +35,7 @@
     "homepage": "https://seenlang.org",
     "devDependencies": {
         "@vitejs/plugin-vue": "^5.1.4",
+        "vite-plugin-singlefile": "^2.0.2",
         "esbuild": "0.24.0"
     }
 }
