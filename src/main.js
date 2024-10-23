@@ -561,7 +561,7 @@ class JSGen {
 
     write_children(block) {
         if(!block || block.length === 0 ) { return }
-        // this.append('.__children = [')
+        // this.append('.children = [')
         this.append('[')
         block.forEach(expr => {
             this.write_expr(expr)
