@@ -31,7 +31,7 @@ class JSGen {
     opts
     runtime
 
-    init(ast, symtab, html_gen, main_args, opts) {  // FIXME: remove html_gen , init will only init js , need to refactor sedit, scompile ...etc
+    init(lang, ast, symtab, html_gen, main_args, opts) {  // FIXME: remove html_gen , init will only init js , need to refactor sedit, scompile ...etc
         this.current = ""
         this.indent_level = 0
         this.stack = []
@@ -43,13 +43,13 @@ class JSGen {
         this.opts = opts  
     }
 
-    init_with_HTML(html_gen, ast, symtab, main_args, opts) {
-        this.init(ast, symtab, html_gen, main_args, opts) // FIXME: remove html_gen when init() is refactored
+    init_with_HTML(lang, html_gen, ast, symtab, main_args, opts) {
+        this.init(lang, ast, symtab, html_gen, main_args, opts) // FIXME: remove html_gen when init() is refactored
         this.html_gen = html_gen
     }
 
-    init_with_runtime(runtime, ast, symtab, main_args, opts) { // FIXME: remove null when init() is refactored to remove html_gen
-        this.init(ast, symtab, null, main_args, opts)
+    init_with_runtime(lang, runtime, ast, symtab, main_args, opts) { // FIXME: remove null when init() is refactored to remove html_gen
+        this.init(lang, ast, symtab, null, main_args, opts)
         this.runtime = runtime
     }   
 
@@ -521,7 +521,7 @@ class JSGen {
     }
 
     write_call(expr) {
-        const runtime_impl = this.runtime.get_fn(expr)
+        const runtime_impl = this.runtime && this.runtime.get_fn(expr)
         if(runtime_impl) {  
             if(runtime_impl._import) { this.prepend(runtime_impl._import)}
             this.append(runtime_impl.code)
