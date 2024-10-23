@@ -230,8 +230,8 @@ class JSGen {
         this.appendi("class " + _typedef.name.v[1] + " {\n")
         this.indent_level += 1
         if(_typedef.fields) { this.write_fields(_typedef.fields) }
-        this.append('el(x) { return this.children[x] }')
-        this.append('els() { return this.children }')
+        this.append('child(x) { return this.children[x] }')
+        this.append('children() { return this.children }')
         this.indent_level -= 1
         this.appendi("}\n\n")
     }
