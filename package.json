@@ -21,7 +21,7 @@
     },
     "scripts": {
         "predevrelease": "npm i",
-        "devreleases" : "vite build",        
+        "devrelease" : "vite build --minify false",        
         "prerelease": "npm i",
         "release": "vite build",
         "postrelease": "npm run minify && node ./lib/release/banner.js",
