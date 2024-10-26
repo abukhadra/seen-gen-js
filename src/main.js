@@ -679,13 +679,13 @@ class JSGen {
     write_expr(expr) {
         if(expr.grouped) { this.append("(") }
         switch(expr.id) {
-            case "()"           :                                                   break
+            // case "()"           :                                                   break
             case "void"         : this.append('null')                           ;   break
             case ";"            :                                                   break
             case "ref"          : this.write_ref(expr)                          ;   break
             case "bool"         : this.append(expr.v.v[1])                      ;   break
-            case "int" : 
-                case "float"    : this.append(to_maghrib_num(expr.v[0].v[1]))   ;   break
+            case "int"          : 
+            case "float"        : this.append(to_maghrib_num(expr.v[0].v[1]))   ;   break
             case "char"         : this.append("'" + expr.v.v[1] + "'")          ;   break
             case "str"          : this.write_str(expr)                          ;   break
             case "return"       : this.write_ret(expr)                          ;   break
