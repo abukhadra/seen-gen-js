@@ -232,6 +232,8 @@ class JSGen {
         if(_typedef.fields) { this.write_fields(_typedef.fields) }
 
         let fns = this.symtab.receivers[_typedef.name.v[1]]
+        console.log(_typedef.name.v[1])
+        console.log(this.symtab.receivers[_typedef.name.v[1]])
         fns && fns.forEach(fn => {
             this.write_fn(fn)
         })
