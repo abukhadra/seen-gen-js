@@ -187,6 +187,7 @@ class JSGen {
     write_fn(_fn, main_args) {
         this.push()
         console.log("NAE!!!")
+        console.log.log(JSON,.stringify(_fn))
         if(_fn.t === "fn") { this.appendi("static ") } 
         console.log("VVVV", _fn.name)
         console.log(_fn.name)
