@@ -189,7 +189,9 @@ class JSGen {
         if(_fn.t === "fn") { this.appendi("static ") } 
         this.to_en_id(_fn.name)
         if(_fn.is_async) { this.append("async ") } 
+        console.log('NAME!!')
         this.append("function " + _fn.name.v[1])
+        console.log('NAME!!!!', _fn.name.v[1])
         if(main_args) {this.append('()') } else { this.write_params(_fn.params) }
         
         this.write_body(_fn.body, _fn.name ==='main', main_args)
