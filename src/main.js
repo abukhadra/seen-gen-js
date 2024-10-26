@@ -330,7 +330,6 @@ class JSGen {
 
     write_ref(expr) {
         const _ref = expr.v.v[1]        
-        console.log(this.current_instance)
         if(_ref === this.current_instance) { 
             this.append('this')   // FIXME: what if ref matchees instance name but is qualified? need to handle this case 
         } else {
