@@ -322,6 +322,8 @@ class JSGen {
         if( !(
             contains(["when", "while", "if", "for", "return"], expr.v.node) 
             || expr.v.t === "()" 
+            || expr.v.t === "void"
+            || expr.v.t === ""
             || this.is_call(expr)
             || expr.semicolon ) ) {
             this.append("return ")
@@ -678,6 +680,7 @@ class JSGen {
         if(expr.grouped) { this.append("(") }
         switch(expr.id) {
             case "()"           :                                                   break
+            case "void"         :                                                   break
             case ";"            :                                                   break
             case "ref"          : this.write_ref(expr)                          ;   break
             case "bool"         : this.append(expr.v.v[1])                      ;   break
