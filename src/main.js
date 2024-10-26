@@ -252,7 +252,7 @@ class JSGen {
         if(_typedef.fields) { this.write_fields(_typedef.fields) }
 
         let fns = this.symtab.receivers[_typedef.name.v[1]]
-        fns && fns.forEach(fn, instance => {
+        fns && fns.forEach( (fn, instance) => {
             this.write_method(fn.v, instance) // FIXME: names are confusing , write_fn is handling fn.v, not fn 
         })
 
