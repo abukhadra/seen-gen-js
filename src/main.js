@@ -31,6 +31,9 @@ class JSGen {
     opts
     runtime
 
+    current_instance
+    
+
     init(lang, ast, symtab, html_gen, main_args, opts) {  // FIXME: remove html_gen , init will only init js , need to refactor sedit, scompile ...etc
         this.current = ""
         this.indent_level = 0
@@ -41,6 +44,8 @@ class JSGen {
         this.html_gen = html_gen
         this.main_args = main_args
         this.opts = opts  
+
+        this.current_instance = null
     }
 
     init_with_HTML(lang, html_gen, ast, symtab, main_args, opts) {
@@ -196,13 +201,15 @@ class JSGen {
         this.pop()
     }
 
-    write_method(_fn, main_args) {
+    write_method(_fn, instance) {
         this.push()
         this.to_en_id(_fn.name)
         if(_fn.is_async) { this.append("async ") } 
         this.append(_fn.name.v[1])
         this.write_params(_fn.params)
-        this.write_body(_fn.body, false, main_args)
+        this.current_instance = instance
+        this.write_body(_fn.body, false)
+        this.current_instance = null
         this.pop()
     }
 
@@ -245,8 +252,8 @@ class JSGen {
         if(_typedef.fields) { this.write_fields(_typedef.fields) }
 
         let fns = this.symtab.receivers[_typedef.name.v[1]]
-        fns && fns.forEach(fn => {
-            this.write_method(fn.v) // FIXME: names are confusing , write_fn is handling fn.v, not fn 
+        fns && fns.forEach(fn, instance => {
+            this.write_method(fn.v, instance) // FIXME: names are confusing , write_fn is handling fn.v, not fn 
         })
 
         this.append('child(x) { return this.children[x] }')
@@ -321,12 +328,13 @@ class JSGen {
 
     write_ref(expr) {
         const _ref = expr.v.v[1]        
-        switch(_ref) {
-            // TODO
-            default:
-                break
+        console.log(this.current_instance)
+        if(_ref === this.current_instance) { 
+            this.append('this')    
+        } else {
+            this.append(_ref)    
         }
-        this.append(_ref)    
+        
     }
 
     write_str(expr) { 
