@@ -188,7 +188,7 @@ class JSGen {
         this.push()
         console.log("NAE!!!")
         if(_fn.t === "fn") { this.appendi("static ") } 
-        console.log("VVVV")
+        console.log("VVVV", _fn.name)
         this.to_en_id(_fn.name)
         console.log("XXX")
         if(_fn.is_async) { this.append("async ") } 
