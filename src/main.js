@@ -230,6 +230,12 @@ class JSGen {
         this.appendi("class " + _typedef.name.v[1] + " {\n")
         this.indent_level += 1
         if(_typedef.fields) { this.write_fields(_typedef.fields) }
+
+        let receiver = this.symtab.receivers[_typedef.name.v[1]]
+        receiver && receiver.fns.forEach(fn => {
+            this.write_fn(fn)
+        })
+
         this.append('child(x) { return this.children[x] }')
         this.append('children() { return this.children }')
         this.indent_level -= 1
