@@ -186,18 +186,10 @@ class JSGen {
 
     write_fn(_fn, main_args) {
         this.push()
-        console.log("NAE!!!")
-        console.log(JSON.stringify(_fn))
         if(_fn.t === "fn") { this.appendi("static ") } 
-        console.log("VVVV", _fn.name)
-        console.log(_fn.name)
-        console.log("GGGG")
         this.to_en_id(_fn.name)
-        console.log("XXX")
         if(_fn.is_async) { this.append("async ") } 
-        console.log('NAME!!')
         this.append("function " + _fn.name.v[1])
-        console.log('NAME!!!!', _fn.name.v[1])
         if(main_args) {this.append('()') } else { this.write_params(_fn.params) }
         
         this.write_body(_fn.body, _fn.name ==='main', main_args)
@@ -241,10 +233,8 @@ class JSGen {
         if(_typedef.fields) { this.write_fields(_typedef.fields) }
 
         let fns = this.symtab.receivers[_typedef.name.v[1]]
-        console.log(_typedef.name.v[1])
-        console.log(JSON.stringify(this.symtab.receivers[_typedef.name.v[1]]))
         fns && fns.forEach(fn => {
-            this.write_fn(fn)
+            this.write_fn(fn.v)
         })
 
         this.append('child(x) { return this.children[x] }')
