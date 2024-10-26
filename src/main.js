@@ -231,8 +231,8 @@ class JSGen {
         this.indent_level += 1
         if(_typedef.fields) { this.write_fields(_typedef.fields) }
 
-        let receiver = this.symtab.receivers[_typedef.name.v[1]]
-        receiver && receiver.fns.forEach(fn => {
+        let fns = this.symtab.receivers[_typedef.name.v[1]]
+        fns && fns.forEach(fn => {
             this.write_fn(fn)
         })
 
