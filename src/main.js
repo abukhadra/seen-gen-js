@@ -680,7 +680,7 @@ class JSGen {
         if(expr.grouped) { this.append("(") }
         switch(expr.id) {
             case "()"           :                                                   break
-            case "void"         :                                                   break
+            case "void"         : this.append('null')                           ;   break
             case ";"            :                                                   break
             case "ref"          : this.write_ref(expr)                          ;   break
             case "bool"         : this.append(expr.v.v[1])                      ;   break
