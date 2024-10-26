@@ -67,7 +67,8 @@ class JSGen {
                     case "main": main = v ; break
                     case "const": this.write_const(v) ; break
                     case "fn": this.write_fn(v) ; break
-                    case "type": this.write_typedef(v) ; break                        
+                    case "type": this.write_typedef(v) ; break 
+                    case "receiver" : break //hanlded insided write_typedef()                       
                     default: panic("unsupported node: " + this.ast[i].id)
                 }
             }
