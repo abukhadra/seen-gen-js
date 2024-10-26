@@ -196,6 +196,18 @@ class JSGen {
         this.pop()
     }
 
+    write_method(_fn, main_args) {
+        this.push()
+        this.to_en_id(_fn.name)
+        if(_fn.is_async) { this.append("async ") } 
+        this.append(_fn.name.v[1])
+        this.write_params(_fn.params)
+        this.write_body(_fn.body, false, main_args)
+        this.pop()
+    }
+
+
+
     write_fields(fields) {        
         const ids = []
         fields.forEach(field => {
@@ -234,7 +246,7 @@ class JSGen {
 
         let fns = this.symtab.receivers[_typedef.name.v[1]]
         fns && fns.forEach(fn => {
-            this.write_fn(fn.v)
+            this.write_method(fn.v) // FIXME: names are confusing , write_fn is handling fn.v, not fn 
         })
 
         this.append('child(x) { return this.children[x] }')
