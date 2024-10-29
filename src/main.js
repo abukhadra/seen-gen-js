@@ -640,22 +640,7 @@ class JSGen {
                 this.write_expr(expr.v.ropr)
             }
             break
-            case ":=": {
-                this.append('let ')
-                this.write_expr(expr.v.lopr)
-                this.append(' = ')
-                this.write_expr(expr.v.ropr)
-                this.append("\n")
-            }
-            break            
-            case "::": {
-                this.appendi("const ")
-                this.write_expr(expr.v.lopr)
-                this.append(" = ")
-                this.write_expr(expr.v.ropr)
-                this.append("\n")
-            }
-            break
+
 
             case ":": {
                 this.appendi("let ")
@@ -663,23 +648,13 @@ class JSGen {
                 this.append("\n")
             }
             break      
-            
+            case "++" : {
+                this.write_expr(expr.v.lopr)
+                this.append('+')
+                this.write_expr(expr.v.ropr)                
+            }
             case "|>" : {
-                let stack = []
-
-                let lhs =  expr.v.lopr
-                let rhs = expr.v.ropr 
-                while(true)  {                    
-                    stack.push(lhs)           
-                    if(rhs.id === 'bin' && rhs.v.op.v === '|>' ) {
-                        lhs = rhs.v.lopr
-                        rhs = rhs.v.ropr
-                    } else {
-                        stack.push(rhs)
-                        break
-                    }
-                }
-                this.write_pipe(stack)
+                throw new Error('|> not implemented')
                 break                
             }
             case "||>" : throw new Error(' ||> : WIP , ' + to_str(expr))
