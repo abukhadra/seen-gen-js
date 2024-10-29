@@ -218,7 +218,6 @@ class JSGen {
     write_fields(fields) {
         const ids = []
         fields.forEach(field => {
-            console.log(JSON.stringify(field))
             const id = field.v[0].v[1]
             ids.push(id)
         })
