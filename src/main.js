@@ -627,36 +627,28 @@ class JSGen {
     write_bin(expr) {
         const op = expr.v.op.v
         switch(op) {
-            case "[": {
+            case "[": 
                 this.write_expr(expr.v.lopr)
                 this.append('[')
                 this.write_expr(expr.v.ropr)
                 this.append(']')
-            }
-            break
-            case "=": {
+                break
+            case "=": 
                 this.write_expr(expr.v.lopr)
                 this.append('=')
                 this.write_expr(expr.v.ropr)
-            }
-            break
-
-
-            case ":": {
+                break
+            case ":": 
                 this.appendi("let ")
                 this.write_expr(expr.v.lopr)
                 this.append("\n")
-            }
-            break      
-            case "++" : {
+                break      
+            case "++" : 
                 this.write_expr(expr.v.lopr)
                 this.append('+')
                 this.write_expr(expr.v.ropr)                
-            }
-            case "|>" : {
-                throw new Error('|> not implemented')
-                break                
-            }
+                break
+            case "|>" : throw new Error('|> not implemented')
             case "||>" : throw new Error(' ||> : WIP , ' + to_str(expr))
             case ":>" : throw new Error(' :> : WIP , ' + to_str(expr))
             case "==":
@@ -677,13 +669,12 @@ class JSGen {
             case "-=":
             case "*=":
             case "\\=":
-            case ".": {
+            case ".": 
                 this.write_expr(expr.v.lopr)
                 this.append(op)
                 if(op === "==" || op === "!=") { this.append("=") }
                 this.write_expr(expr.v.ropr)
-            }
-            break
+                break
             default:
                 panic("cannot write binary operation: " + to_str(expr))
                 break
