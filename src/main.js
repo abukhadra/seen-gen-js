@@ -215,17 +215,14 @@ class JSGen {
         this.pop()
     }
 
-
-
-    write_fields(fields) {        
+    write_fields(fields) {
         const ids = []
         fields.forEach(field => {
+            console.log(JSON.stringify(field))
             const id = field.v[0].v[1]
             ids.push(id)
         })
-        ids.forEach(id => { 
-            this.appendi(this.spaces() + "" + id + "\n") }
-        )
+        ids.forEach(id => { this.appendi(this.spaces() + "" + id + "\n") } )
         this.write_init(ids)
     }
 
@@ -278,8 +275,8 @@ class JSGen {
             this.write_method(fn.v, instance) // FIXME: names are confusing , write_fn is handling fn.v, not fn 
         })
 
-        this.append('sn__child(x) { return this.sn__children[x] }')
-        this.append('sn__children() { return this.sn__children }')
+        this.append('sn__(x) { return this.sn__[x] }')
+        this.append('sn__() { return this.sn__}')
         this.appendi("}\n\n")
 
     }
