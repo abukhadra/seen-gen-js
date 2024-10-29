@@ -72,7 +72,9 @@ class JSGen {
                     case "main": main = v ; break
                     case "const": this.write_const(v) ; break
                     case "fn": this.write_fn(v) ; break
-                    case "type": this.write_typedef(v) ; break 
+                    // case "type": this.write_typedef(v) ; break 
+                    case "struct" : this.write_struct(v) ; break 
+                    case "enum" : this.write_enum(v) ; break 
                     case "receiver" : break //hanlded insided write_typedef()                       
                     default: panic("unsupported node: " + this.ast[i].id)
                 }
@@ -221,7 +223,9 @@ class JSGen {
             const id = field.v[0].v[1]
             ids.push(id)
         })
-        ids.forEach(id => { this.appendi(this.spaces() + "" + id + "\n") })
+        ids.forEach(id => { 
+            this.appendi(this.spaces() + "" + id + "\n") }
+        )
         this.write_init(ids)
     }
 
@@ -246,22 +250,42 @@ class JSGen {
         this.appendi("}\n")
     }
 
-    write_typedef(_typedef) {
-        this.appendi("class " + _typedef.name.v[1] + " {\n")
-        this.indent_level += 1
-        if(_typedef.fields) { this.write_fields(_typedef.fields) }
+    // write_typedef(_typedef) {
+    //     this.appendi("class " + _typedef.name.v[1] + " {\n")
+    //     this.indent_level += 1
+    //     if(_typedef.fields) { this.write_fields(_typedef.fields) }
 
-        let fns = this.symtab.receivers[_typedef.name.v[1]]
+    //     let fns = this.symtab.receivers[_typedef.name.v[1]]
+    //     fns && fns.forEach( (data) => {
+    //         const fn = data[0]
+    //         const instance = data[1]
+    //         this.write_method(fn.v, instance) // FIXME: names are confusing , write_fn is handling fn.v, not fn 
+    //     })
+
+    //     this.append('child(x) { return this.children[x] }')
+    //     this.append('children() { return this.children }')
+    //     this.indent_level -= 1
+    //     this.appendi("}\n\n")
+    // }
+
+    write_struct(_struct) {
+        this.appendi("class " + _struct.name.v[1] + " {\n")
+        if(_struct.fields) { this.write_fields(_struct.fields) }
+        let fns = this.symtab.receivers[_struct.name.v[1]]
         fns && fns.forEach( (data) => {
             const fn = data[0]
             const instance = data[1]
             this.write_method(fn.v, instance) // FIXME: names are confusing , write_fn is handling fn.v, not fn 
         })
 
-        this.append('child(x) { return this.children[x] }')
-        this.append('children() { return this.children }')
-        this.indent_level -= 1
+        this.append('sn__child(x) { return this.sn__children[x] }')
+        this.append('sn__children() { return this.sn__children }')
         this.appendi("}\n\n")
+
+    }
+
+    write_enum(_enum) {
+        panic('enum is not implemented yet.')
     }
 
     write_const(_const) {
