@@ -5,6 +5,7 @@ import {
     is_list , contains, 
     to_str,
     repeat,
+    pprint,
     panic,    
 }  from '../lib/sutils.js'
 
