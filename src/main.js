@@ -584,7 +584,7 @@ class JSGen {
             return
         } 
         else if(this.symtab.structs.includes(expr.v.id.v.v[1])) {  this.append('new ') }
-        this.write_expr(expr.v)
+        this.write_expr(expr.v.id)
         
         this.append('(')
         const args = expr.v.args
