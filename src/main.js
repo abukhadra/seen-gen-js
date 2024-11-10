@@ -12,7 +12,7 @@ const AR_ID = {
     "بدء": "main",
     "اطبع_سطر": "println",
     "تعبير_نمطي": "regex",
-    "هذا": "this",
+    "هنا": "this",
     "مشيّد": "constructor",
     "انهاء": "panic"
 }
@@ -74,8 +74,13 @@ class JSGen {
                     case "fn": this.write_fn(v) ; break
                     // case "type": this.write_typedef(v) ; break 
                     case "struct" : this.write_struct(v) ; break 
+
                     case "enum" : this.write_enum(v) ; break 
-                    case "receiver" : break //hanlded insided write_typedef()                       
+                    case "trait": this.write_trait(v); break 
+                    case "trait_impl": this.write_trait_impl(v); break 
+                    case "method" : this.write_method(v); break
+
+                    //case "receiver" : break //hanlded insided write_typedef()                       
                     default: panic("unsupported node: " + this.ast[i].id)
                 }
             }
@@ -280,9 +285,11 @@ class JSGen {
 
     }
 
-    write_enum(_enum) {
-        panic('enum is not implemented yet.')
-    }
+    write_enum(_enum) { panic('enum is not implemented yet.') }
+    write_trait(_trait) { panic('trait is not implemented yet.') }
+    write_trait_impl(_trait_impl) { panic('trait implementation is not implemented yet.') }
+    write_method(_method) { panic('method is not implemented yet.') }
+    
 
     write_const(_const) {
         this.appendi("const ")
