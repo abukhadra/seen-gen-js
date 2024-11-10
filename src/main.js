@@ -580,6 +580,7 @@ class JSGen {
     }
 
     write_call(expr) {
+        pprint(expr)
         const runtime_impl = this.runtime && this.runtime.get_fn(expr)
         if(runtime_impl) {  
             if(runtime_impl._import) { this.prepend(runtime_impl._import)}
