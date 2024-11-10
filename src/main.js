@@ -252,24 +252,6 @@ class JSGen {
         this.appendi("}\n")
     }
 
-    // write_typedef(_typedef) {
-    //     this.appendi("class " + _typedef.name.v[1] + " {\n")
-    //     this.indent_level += 1
-    //     if(_typedef.fields) { this.write_fields(_typedef.fields) }
-
-    //     let fns = this.symtab.receivers[_typedef.name.v[1]]
-    //     fns && fns.forEach( (data) => {
-    //         const fn = data[0]
-    //         const instance = data[1]
-    //         this.write_method(fn.v, instance) // FIXME: names are confusing , write_fn is handling fn.v, not fn 
-    //     })
-
-    //     this.append('child(x) { return this.children[x] }')
-    //     this.append('children() { return this.children }')
-    //     this.indent_level -= 1
-    //     this.appendi("}\n\n")
-    // }
-
     write_struct(_struct) {
         this.appendi("class " + _struct.name.v[1] + " {\n")
         if(_struct.fields) { this.write_fields(_struct.fields) }
@@ -581,7 +563,7 @@ class JSGen {
     }
 
     write_call(expr) {
-        pprint(expr)
+        if(expr.v.trailing.length > 0 ) { panic('trailing closures is not implemented yet') }   // FIXME
         const runtime_impl = this.runtime && this.runtime.get_fn(expr)
         if(runtime_impl) {  
             if(runtime_impl._import) { this.prepend(runtime_impl._import)}
@@ -590,21 +572,21 @@ class JSGen {
         }
 
         this.to_en_id(expr.v[0].v)
-        if(expr.v[0].v.v[1] === 'html') { 
+        if(expr.v.id.v.v[1] === 'html') { 
             const page = this.html_gen.en.write_html(expr, '') 
             this.append(` (() => \`${page}\`)() `)
             return
         }    // FIXME: workaround to generate html that should be removed when semantic analysis is ready
-        else if (expr.v[0].v.v[1] === 'صفحة_الشبكة') { 
+        else if (expr.v.id.v.v[1] === 'صفحة_الشبكة') { 
             const page = this.html_gen.ar.write_ar_html(expr, '')
             this.append(`(() => \`${page}\`)()`)
             return
         } 
-        else if(this.symtab.structs.includes(expr.v[0].v.v[1])) {  this.append('new ') }
-        this.write_expr(expr.v[0])
+        else if(this.symtab.structs.includes(expr.v.id.v.v[1])) {  this.append('new ') }
+        this.write_expr(expr.v)
         
         this.append('(')
-        const args = expr.v[1]
+        const args = expr.v.args
         if(args) {
             args.forEach( (arg , i) => {
                 // if(arg.id === 'named_arg') { panic("named arguments are not fully supported yet.") }
@@ -612,12 +594,7 @@ class JSGen {
                 if( i < args.length - 1 )  { this.append(', ') }
             })    
         }
-        if(expr.v[2]) { 
-            if(args){ this.append(', ')}
-            this.write_children(expr.v[2]) 
-        }        
         this.append(')')
-
     }
 
     write_children(block) {
