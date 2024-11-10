@@ -563,7 +563,8 @@ class JSGen {
     }
 
     write_call(expr) {
-        if(expr.v.trailing.length > 0 ) { panic('trailing closures is not implemented yet') }   // FIXME
+        if(expr.v.trailing.length > 0 ) { panic('trailing closures is not implemented yet') }   // FIXME : should be passed as args
+
         const runtime_impl = this.runtime && this.runtime.get_fn(expr)
         if(runtime_impl) {  
             if(runtime_impl._import) { this.prepend(runtime_impl._import)}
@@ -571,7 +572,7 @@ class JSGen {
             return 
         }
 
-        this.to_en_id(expr.v[0].v)
+        this.to_en_id(expr.v.id.v)
         if(expr.v.id.v.v[1] === 'html') { 
             const page = this.html_gen.en.write_html(expr, '') 
             this.append(` (() => \`${page}\`)() `)
