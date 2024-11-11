@@ -366,7 +366,7 @@ class JSGen {
     is_call(expr) { return expr.v.id === "bin" && expr.v.v.op.v ==="(" }
     write_iret(expr) {
         if( !(
-            contains(["when", "while", "if", "for" , "return"], expr.v.node) 
+            contains(["when", "while", "if", "for", "for_inf", "for_cond" , "for_in" , "return"], expr.v.node) 
             || expr.v.t === "()" 
             || expr.v.t === "void"
             || expr.v.t === ""
