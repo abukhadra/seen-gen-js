@@ -313,7 +313,14 @@ class JSGen {
             this.write_var(stmt.v)
         } else if(stmt.id === "break") {
             this.write_break(stmt)
-        } else { panic("cannot write stmt: " + to_str(stmt)) }
+        } else if(stmt.id === "for_cond") {
+            panic('for_cond not implemented')
+        } else if(stmt.id === "for_inf") {
+            panic('for_inf not implemented')
+        } else if(stmt.id === "for_in") {
+            panic('for_in not implemented')
+        }
+         else { panic("cannot write stmt: " + to_str(stmt)) }
     }
 
     write_body(body, is_main, main_args) {
@@ -359,7 +366,7 @@ class JSGen {
     is_call(expr) { return expr.v.id === "bin" && expr.v.v.op.v ==="(" }
     write_iret(expr) {
         if( !(
-            contains(["when", "while", "if", "for", "return"], expr.v.node) 
+            contains(["when", "while", "if", "for" , "return"], expr.v.node) 
             || expr.v.t === "()" 
             || expr.v.t === "void"
             || expr.v.t === ""
