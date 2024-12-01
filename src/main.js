@@ -226,7 +226,8 @@ class JSGen {
         const ids = []
         fields.forEach((field) => {
             pprint(field)
-            const id = field.v.id.v[1]
+            // const id = field.v.id.v[1]
+            const id = field.id.v[1]
             ids.push(id)
         })
         ids.forEach((id)=> { this.appendi(this.spaces() + "" + id + "\n") } )
