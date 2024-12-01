@@ -225,6 +225,7 @@ class JSGen {
     write_fields(fields) {
         const ids = []
         fields.forEach((field) => {
+            pprint(field)
             const id = field.v.id.v[1]
             ids.push(id)
         })
