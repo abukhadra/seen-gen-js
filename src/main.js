@@ -74,6 +74,7 @@ class JSGen {
                     case "const": this.write_const(v) ; break
                     case "fn": this.write_fn(v) ; break
                     // case "type": this.write_typedef(v) ; break 
+                    case "alias": /* TODO alias should be removed in semantic analysis, for now , igore */ ; break 
                     case "struct" : this.write_struct(v) ; break 
 
                     case "enum" : this.write_enum(v) ; break 
@@ -265,8 +266,8 @@ class JSGen {
             this.write_method(fn.v, instance) // FIXME: names are confusing , write_fn is handling fn.v, not fn 
         })
 
-        this.append('sn__(x) { return this.sn__[x] }')
-        this.append('sn__() { return this.sn__}')
+        // this.append('sn__(x) { return this.sn__[x] }')
+        // this.append('sn__() { return this.sn__}')
         this.appendi("}\n\n")
 
     }
