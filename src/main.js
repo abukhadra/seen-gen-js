@@ -224,10 +224,10 @@ class JSGen {
     // FIXME: handle field.implicit
     write_fields(fields) {
         const ids = []
-        fields.forEach((field) => {
+        fields.forEach((field, i) => {
             pprint(field)
             // const id = field.v.id.v[1]
-            const id = field.id.v[1]
+            const id = field.id? field.id.v[1] : `_${i}`
             ids.push(id)
         })
         ids.forEach((id)=> { this.appendi(this.spaces() + "" + id + "\n") } )
